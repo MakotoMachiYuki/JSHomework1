@@ -5,6 +5,9 @@ const inputConvert = document.getElementById("beforeConverted");
 const buttons = document.querySelectorAll(".math");
 const bil1 = document.getElementById("bil1");
 const bil2 = document.getElementById("bil2");
+const minus = document.getElementById("-");
+const times = document.getElementById("x");
+const divide = document.getElementById("/");
 
 inputConvert.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
@@ -15,7 +18,7 @@ inputConvert.addEventListener("keypress", function (event) {
 
 convert.addEventListener("click", () => {
   const beforeConverted = document.getElementById("beforeConverted").value;
-  console.log(beforeConverted);
+
   converter(beforeConverted);
 });
 
@@ -35,6 +38,22 @@ bil1.addEventListener("keypress", function (event) {
   }
 });
 
+bil2.addEventListener("keypress", function (event) {
+  if (event.key === "+") {
+    event.preventDefault();
+    document.getElementById("+").click();
+  } else if (event.key === "-") {
+    event.preventDefault();
+    document.getElementById("-").click();
+  } else if (event.key === "*" || event.key === "x" || event.key === "X") {
+    event.preventDefault();
+    document.getElementById("x").click();
+  } else if (event.key === "/" || event.key === "÷") {
+    event.preventDefault();
+    document.getElementById("/").click();
+  }
+});
+
 function calculator(value1, value2, operators) {
   let operator = operators.innerText;
   let resultMath = 0;
@@ -48,12 +67,10 @@ function calculator(value1, value2, operators) {
     resultMath = value1 / value2;
   }
 
-  console.log(resultMath);
   document.getElementById("hasil").value = resultMath;
 }
 
 function converter(value) {
-  console.log(value);
   var checkNumber = betweenHundred(value);
   var check = errorMessage(checkNumber);
 
@@ -73,7 +90,7 @@ function converter(value) {
   } else if (value >= 81 && value <= 100) {
     resultNumber = "A";
   }
-  resultConverter.textContent = `Converted to => ${resultNumber}`;
+  resultConverter.textContent = `Result is ${resultNumber}`;
 }
 
 function errorMessage(checkNumber) {
@@ -82,6 +99,9 @@ function errorMessage(checkNumber) {
     return false;
   } else if (checkNumber === "below0") {
     resultConverter.textContent = "Number is below 0";
+    return false;
+  } else if (checkNumber === "empty") {
+    resultConverter.textContent = "No Value!";
     return false;
   } else {
     return true;
@@ -93,6 +113,8 @@ function betweenHundred(value) {
     return "over100";
   } else if (value < 0) {
     return "below0";
+  } else if (value == "") {
+    return "empty";
   } else {
     return true;
   }

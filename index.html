@@ -10,11 +10,13 @@
   <body>
     <div id="main">
       <div id="nilai">
+        <div class="text">Converter</div>
         <input id="beforeConverted" type="number" autocomplete="off" />
         <button id="convert">Convert!</button>
         <div id="resultConverter">Press Enter!</div>
       </div>
       <div id="calculator">
+        <div class="text">Calculator</div>
         <div id="bil1Div">
           Bil 1 <input id="bil1" type="number" autocomplete="off" />
         </div>
@@ -22,7 +24,13 @@
           Bil 2 <input id="bil2" type="number" autocomplete="off" />
         </div>
         <div id="hasilDiv">
-          Hasil <input id="hasil" type="number" autocomplete="off" />
+          Hasil
+          <input
+            id="hasil"
+            type="number"
+            autocomplete="off"
+            readonly="readonly"
+          />
         </div>
         <button id="+" class="math">+</button>
         <button id="-" class="math">-</button>
